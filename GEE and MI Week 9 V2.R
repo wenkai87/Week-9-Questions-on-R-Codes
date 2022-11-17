@@ -117,7 +117,6 @@ summary(fit.gee.ex.e3)
 
 
 ### Imputation ###
-rm(e4)
 # ??MICE package can only work on numeric data. Need to change healthgen and sex into numeric data
 e4 <- e2
 
