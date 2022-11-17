@@ -21,7 +21,6 @@ emlm                                           # inspect data frame for blank va
 
 ## Inspect individual variable and address the invalid/ blank values
 describe (emlm[,'age'])
-emlm$agec <- scale(emlm$age, scale= FALSE)
 
 describe(emlm[,'admin2'])                      # wrongly tells you there are 10 distinct values  
 summary(emlm[,'admin2'])                       # reveals that you have 9 distinct values and 1 blank values - so need to replace blank with 'NA'
