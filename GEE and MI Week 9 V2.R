@@ -21,6 +21,7 @@ emlm                                           # inspect data frame for blank va
 
 ## Inspect individual variable and address the invalid/ blank values
 describe (emlm[,'age'])
+emlm[,'age'] <- scale(emlm[,'age'], scale= FALSE)
 
 describe(emlm[,'admin2'])                      # wrongly tells you there are 10 distinct values  
 summary(emlm[,'admin2'])                       # reveals that you have 9 distinct values and 1 blank values - so need to replace blank with 'NA'
@@ -60,6 +61,7 @@ e2 <- emlm[,c('cogdecline', 'admin2', 'age', 'sex2', 'bmi', 'healthgen2')]
 head(e2)             # compared with emlm, you have dropped 5 variables: id, age, sex, healthgen,numgrp
 head(emlm)
 
+# "factorised" variables for glm, imputation, gee
 str(e2)
 
 e2[,'cogdecline'] <- as.numeric(e2[,'cogdecline'])   # Factors (with as.factor) are variables that have discrete values, 
@@ -70,6 +72,7 @@ e2[,'age'] <- as.numeric(e2[,'age'])
 e2[,'bmi'] <- as.numeric(e2[,'bmi'])                # Numerics (with as.numeric) are numbers, with infinite other numbers between them. 
                                                     # So for example 5 is a number, as is 6, but so are 5.01, 5.001, 5.0001 etc.
 
+# you need the outcome cogdecline as numeric for geeglm later
 # don't need to as.factor admin2 for now because you'll do it in the geeglm later
 
 str(e2)                                             # check whether the variables have been converted
@@ -117,6 +120,7 @@ summary(fit.gee.ex.e3)
 
 
 ### Imputation ###
+
 # ??MICE package can only work on numeric data. Need to change healthgen and sex into numeric data
 e4 <- e2
 
